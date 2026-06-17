@@ -3,18 +3,25 @@ import { facility } from "@/lib/facility";
 type Props = {
   /** Button label. Defaults to a value-communicating CTA. */
   label?: string;
-  /** Visual style. "primary" is the bright accent button, "ghost" is outlined. */
-  variant?: "primary" | "ghost";
+  /**
+   * Visual style.
+   * - "primary": filled industrial-orange button (the main action).
+   * - "outline-light": outlined for use on the dark navy background.
+   * - "outline-dark": outlined for use on light/paper backgrounds.
+   */
+  variant?: "primary" | "outline-light" | "outline-dark";
+  /** Smaller padding for the sticky header. */
+  size?: "md" | "sm";
   className?: string;
 };
 
 /** Phone icon, decorative (labelled by the surrounding button text). */
-function PhoneIcon() {
+function PhoneIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0"
+      className={`${className} shrink-0`}
       fill="none"
       stroke="currentColor"
       strokeWidth="2"
@@ -33,22 +40,27 @@ function PhoneIcon() {
 export default function CallButton({
   label,
   variant = "primary",
+  size = "md",
   className = "",
 }: Props) {
   const base =
-    "inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold transition focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-300/60";
-  const styles =
-    variant === "primary"
-      ? "bg-amber-400 text-navy-dark hover:bg-amber-300 shadow-lg shadow-amber-500/20"
-      : "border-2 border-white/80 text-white hover:bg-white hover:text-navy";
+    "inline-flex items-center justify-center gap-2 rounded-md font-display font-bold uppercase tracking-wide transition focus:outline-none focus-visible:ring-4 focus-visible:ring-accent/40";
+  const sizing = size === "sm" ? "px-4 py-2 text-sm" : "px-6 py-3 text-base";
+
+  const variants: Record<NonNullable<Props["variant"]>, string> = {
+    primary:
+      "bg-accent text-white hover:bg-accent-dark shadow-md shadow-accent/20",
+    "outline-light": "border-2 border-white/70 text-white hover:bg-white/10",
+    "outline-dark": "border-2 border-ink text-ink hover:bg-ink hover:text-white",
+  };
 
   return (
     <a
       href={facility.phoneHref}
-      className={`${base} ${styles} ${className}`}
+      className={`${base} ${sizing} ${variants[variant]} ${className}`}
       aria-label={`Call Storage Units Idaho Falls at ${facility.phoneDisplay}`}
     >
-      <PhoneIcon />
+      <PhoneIcon className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} />
       <span>{label ?? `Call ${facility.phoneDisplay}`}</span>
     </a>
   );

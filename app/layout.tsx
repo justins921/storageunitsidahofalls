@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
+import { Barlow, Barlow_Semi_Condensed } from "next/font/google";
 import "./globals.css";
 import { facility } from "@/lib/facility";
 import { buildJsonLd } from "@/lib/schema";
+
+const body = Barlow({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const display = Barlow_Semi_Condensed({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-display",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(facility.url),
@@ -50,14 +65,16 @@ export default function RootLayout({
   const jsonLd = buildJsonLd();
 
   return (
-    <html lang="en">
+    <html lang="en" className={`${body.variable} ${display.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-white text-navy antialiased">{children}</body>
+      <body className="bg-paper font-sans text-ink antialiased">
+        {children}
+      </body>
     </html>
   );
 }

@@ -6,6 +6,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Diagonal signage / loading-dock stripe used as an industrial accent detail. */
+.signage-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #e2562a 0,
+    #e2562a 12px,
+    #0a1f33 12px,
+    #0a1f33 24px
+  );
+}
+
 /* Visually hidden, but readable by assistive tech and AI crawlers that parse
    the DOM. Used for the #llm-context block. */
 .sr-only-llm {

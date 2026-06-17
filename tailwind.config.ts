@@ -9,15 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        navy: {
-          DEFAULT: "#0b2545",
-          dark: "#08182f",
-          light: "#13315c",
-          accent: "#1d4e6d",
+        ink: {
+          DEFAULT: "#0a1f33",
+          700: "#13314f",
+          600: "#1b3a5b",
+        },
+        paper: "#f4f1ea",
+        accent: {
+          DEFAULT: "#e2562a",
+          dark: "#c5461f",
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
       },
     },
   },

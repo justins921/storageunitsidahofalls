@@ -1,4 +1,5 @@
 import CallButton from "@/components/CallButton";
+import SiteHeader from "@/components/SiteHeader";
 import { ClockIcon, DoorIcon, TruckIcon, PinIcon } from "@/components/icons";
 import { facility, units, faqs } from "@/lib/facility";
 
@@ -38,112 +39,162 @@ function LlmContext() {
   );
 }
 
+const features = [
+  {
+    Icon: ClockIcon,
+    title: "24/7 Gate Access",
+    body: "Reach your unit any hour, any day. Gate hours run 12:00 AM to 11:59 PM, all year.",
+  },
+  {
+    Icon: DoorIcon,
+    title: "Roll Up Doors",
+    body: "Wide roll up doors on every unit make loading heavy or bulky items straightforward.",
+  },
+  {
+    Icon: TruckIcon,
+    title: "Drive-Up Outdoor Access",
+    body: "Pull right up and park at your door. No hallways, no elevators, no long hauls.",
+  },
+];
+
 export default function Home() {
   return (
     <>
       <LlmContext />
+      <SiteHeader />
 
-      <main>
-        {/* 1. HERO */}
-        <section className="bg-navy text-white">
-          <div className="mx-auto max-w-5xl px-5 py-16 text-center sm:py-24">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-amber-300">
-              {facility.name}
-            </p>
-            <h1 className="text-3xl font-extrabold leading-tight sm:text-5xl">
-              Storage Units in Idaho Falls, ID
-            </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-lg text-blue-100 sm:text-xl">
-              Drive-up units with roll up doors and 24/7 gate access, starting at
-              just ${facility.startingPrice}/mo. Units are filling up. Call now
-              to reserve yours before it is gone.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <CallButton label={`Call to Reserve: ${facility.phoneDisplay}`} />
-              <a
-                href="#units"
-                className="inline-flex items-center justify-center rounded-lg border-2 border-white/40 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10"
-              >
-                See Units & Prices
-              </a>
+      <main id="top">
+        {/* HERO */}
+        <section className="relative bg-ink text-white">
+          <div className="signage-stripe h-2 w-full" aria-hidden="true" />
+          <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div>
+              <p className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">
+                Idaho Falls, ID 83401
+              </p>
+              <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[0.95] sm:text-6xl">
+                Storage Units in
+                <br />
+                Idaho Falls, ID
+              </h1>
+              <p className="mt-5 max-w-xl text-lg text-blue-100/90">
+                Clean, drive-up units with roll up doors and round-the-clock gate
+                access, starting at ${facility.startingPrice} a month. Spaces are
+                going fast. Call to lock one in before it is gone.
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <CallButton label={`Call to Reserve: ${facility.phoneDisplay}`} />
+                <a
+                  href="#units"
+                  className="inline-flex items-center justify-center rounded-md border-2 border-white/40 px-6 py-3 font-display text-base font-bold uppercase tracking-wide text-white transition hover:bg-white/10"
+                >
+                  See Units & Prices
+                </a>
+              </div>
             </div>
-            <p className="mt-6 text-sm text-blue-200">
-              {facility.access.short} · {fullAddress}
-            </p>
+
+            {/* Availability board — reads like a posted sign at the facility */}
+            <aside className="rounded-lg border border-white/15 bg-ink-700/60 p-6 shadow-xl">
+              <p className="font-display text-xs font-bold uppercase tracking-[0.2em] text-blue-200/80">
+                Now Renting
+              </p>
+              <p className="mt-1 font-display text-5xl font-extrabold text-white">
+                From ${facility.startingPrice}
+                <span className="text-2xl font-bold text-blue-200/80">/mo</span>
+              </p>
+              <ul className="mt-5 space-y-3 border-t border-white/10 pt-5 text-sm">
+                {units.map((unit) => (
+                  <li
+                    key={unit.id}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <span className="font-semibold text-white">
+                      {unit.size}{" "}
+                      <span className="font-normal text-blue-200/70">
+                        · {unit.sqft} sq ft
+                      </span>
+                    </span>
+                    <span className="font-display font-bold text-accent">
+                      ${unit.price}/mo
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-xs text-blue-200/70">
+                {facility.access.short}
+              </p>
+            </aside>
           </div>
         </section>
 
-        {/* 2. UNIT CARDS */}
-        <section id="units" className="bg-slate-50 py-16 sm:py-20">
+        {/* INVENTORY / UNIT CARDS */}
+        <section id="units" className="py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-5">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="text-2xl font-bold sm:text-3xl">
-                Available Storage Units & Prices
+            <div className="flex items-end gap-4">
+              <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
+                Available Units
               </h2>
-              <p className="mt-3 text-slate-600">
-                Every unit is drive-up with a roll up door and outdoor access.
-                Reserve by phone, no deposit form required.
-              </p>
+              <span className="mb-1 hidden h-px flex-1 bg-ink/15 sm:block" />
             </div>
+            <p className="mt-3 max-w-2xl text-stone-600">
+              Every unit is drive-up with a roll up door and outdoor access.
+              Reserve by phone, no online form required.
+            </p>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="mt-8 space-y-4">
               {units.map((unit) => {
                 const low = unit.unitsLeft <= 2;
                 return (
                   <article
                     key={unit.id}
-                    className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                    className="grid gap-5 rounded-lg border border-stone-200 bg-white p-5 shadow-sm sm:p-6 md:grid-cols-[auto_1fr_auto] md:items-center"
                   >
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <h3 className="text-xl font-bold">{unit.size}</h3>
-                        <p className="text-sm text-slate-500">
-                          {unit.sqft} sq ft
-                        </p>
-                      </div>
-                      <span
-                        className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                          low
-                            ? "bg-red-100 text-red-700"
-                            : "bg-emerald-100 text-emerald-700"
-                        }`}
-                      >
-                        {unit.availability}
+                    {/* Size block */}
+                    <div className="flex items-baseline gap-3 md:w-44 md:flex-col md:items-start md:gap-1">
+                      <span className="font-display text-4xl font-extrabold leading-none text-ink">
+                        {unit.size}
+                      </span>
+                      <span className="text-sm text-stone-500">
+                        {unit.sqft} sq ft
                       </span>
                     </div>
 
-                    <p className="mt-4">
-                      <span className="text-3xl font-extrabold text-navy">
-                        ${unit.price}
-                      </span>
-                      <span className="text-slate-500">/mo</span>
-                    </p>
-
-                    <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                      {unit.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2">
-                          <svg
-                            aria-hidden="true"
-                            viewBox="0 0 20 20"
-                            className="h-4 w-4 text-emerald-600"
-                            fill="currentColor"
+                    {/* Features + availability */}
+                    <div>
+                      <div className="flex flex-wrap gap-2">
+                        {unit.features.map((feature) => (
+                          <span
+                            key={feature}
+                            className="rounded-full bg-ink/5 px-3 py-1 text-xs font-semibold text-ink-700"
                           >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.1 3.1 6.8-6.8a1 1 0 0 1 1.4 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                            {feature}
+                          </span>
+                        ))}
+                      </div>
+                      <p
+                        className={`mt-3 inline-flex items-center gap-1.5 text-sm font-bold ${
+                          low ? "text-accent-dark" : "text-emerald-700"
+                        }`}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className={`h-2 w-2 rounded-full ${
+                            low ? "bg-accent" : "bg-emerald-500"
+                          }`}
+                        />
+                        {unit.availability}
+                      </p>
+                    </div>
 
-                    <div className="mt-6 pt-2">
-                      <CallButton
-                        label="Call to Reserve"
-                        className="w-full"
-                      />
+                    {/* Price + CTA */}
+                    <div className="flex items-center justify-between gap-4 border-t border-stone-100 pt-4 md:flex-col md:items-end md:border-0 md:pt-0">
+                      <p className="font-display text-3xl font-extrabold text-ink">
+                        ${unit.price}
+                        <span className="text-base font-bold text-stone-400">
+                          /mo
+                        </span>
+                      </p>
+                      <CallButton label="Call to Reserve" size="sm" />
                     </div>
                   </article>
                 );
@@ -152,83 +203,73 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. FEATURES */}
-        <section className="py-16 sm:py-20">
-          <div className="mx-auto max-w-5xl px-5">
-            <h2 className="text-center text-2xl font-bold sm:text-3xl">
-              Why Store With Us
+        {/* FEATURES */}
+        <section className="bg-ink py-16 text-white sm:py-20">
+          <div className="mx-auto max-w-6xl px-5">
+            <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
+              Built for Easy Storing
             </h2>
-            <div className="mt-10 grid gap-8 sm:grid-cols-3">
-              <div className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-navy/5 text-navy">
-                  <ClockIcon />
+            <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-3">
+              {features.map(({ Icon, title, body }) => (
+                <div key={title} className="bg-ink p-7">
+                  <Icon className="h-9 w-9 text-accent" />
+                  <h3 className="mt-4 font-display text-xl font-bold uppercase tracking-wide">
+                    {title}
+                  </h3>
+                  <p className="mt-2 text-sm text-blue-100/80">{body}</p>
                 </div>
-                <h3 className="mt-4 text-lg font-semibold">24/7 Access</h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Reach your belongings any hour of the day, every day of the
-                  year. Gate hours run 12:00 AM to 11:59 PM.
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* HOURS — posted-notice style */}
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-3xl px-5">
+            <div className="overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
+              <div className="signage-stripe h-2 w-full" aria-hidden="true" />
+              <div className="p-8 text-center sm:p-10">
+                <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
+                  Access Hours
+                </h2>
+                <p className="mt-5 font-display text-4xl font-extrabold text-accent">
+                  {facility.access.label}
                 </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-navy/5 text-navy">
-                  <DoorIcon />
+                <p className="mt-1 text-stone-600">
+                  Open 7 days a week, 365 days a year
+                </p>
+                <p className="mt-6 text-stone-600">
+                  Office: {facility.office}. Call {facility.phoneDisplay} to set
+                  up a visit or reserve a unit.
+                </p>
+                <div className="mt-7 flex justify-center">
+                  <CallButton label={`Call ${facility.phoneDisplay}`} />
                 </div>
-                <h3 className="mt-4 text-lg font-semibold">Roll Up Doors</h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Wide roll up doors make it easy to load and unload heavy or
-                  bulky items without a struggle.
-                </p>
-              </div>
-              <div className="text-center">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-navy/5 text-navy">
-                  <TruckIcon />
-                </div>
-                <h3 className="mt-4 text-lg font-semibold">Outdoor Access</h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Drive right up to your unit and park at the door. No hallways,
-                  no elevators, no hauling across a building.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 4. HOURS */}
-        <section className="bg-navy py-16 text-white sm:py-20">
-          <div className="mx-auto max-w-3xl px-5 text-center">
-            <h2 className="text-2xl font-bold sm:text-3xl">Access Hours</h2>
-            <p className="mt-6 text-3xl font-extrabold text-amber-300">
-              {facility.access.label}
-            </p>
-            <p className="mt-2 text-blue-100">Open 7 days a week, 365 days a year</p>
-            <p className="mt-6 text-blue-100">
-              Office: {facility.office}. Call {facility.phoneDisplay} to schedule
-              a visit or reserve a unit.
-            </p>
-            <div className="mt-8">
-              <CallButton label={`Call ${facility.phoneDisplay}`} />
-            </div>
-          </div>
-        </section>
-
-        {/* 5. LOCATION */}
-        <section id="location" className="py-16 sm:py-20">
+        {/* LOCATION */}
+        <section id="location" className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-6xl px-5">
             <div className="grid items-center gap-10 md:grid-cols-2">
               <div>
-                <h2 className="text-2xl font-bold sm:text-3xl">
+                <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
                   Find Us in Idaho Falls
                 </h2>
-                <p className="mt-4 text-slate-600">
+                <p className="mt-4 text-stone-600">
                   We are on East Iona Road, easy to reach from anywhere in Idaho
                   Falls and the surrounding area.
                 </p>
                 <div className="mt-6 flex items-start gap-3">
-                  <span className="mt-1 text-navy">
+                  <span className="mt-1 text-accent">
                     <PinIcon className="h-6 w-6" />
                   </span>
-                  <address className="not-italic text-slate-800">
-                    <strong>{facility.name}</strong>
+                  <address className="not-italic text-ink">
+                    <strong className="font-display font-bold uppercase tracking-wide">
+                      {facility.name}
+                    </strong>
                     <br />
                     {facility.address.street}
                     <br />
@@ -237,7 +278,7 @@ export default function Home() {
                     <br />
                     <a
                       href={facility.phoneHref}
-                      className="font-semibold text-navy underline"
+                      className="font-semibold text-accent-dark underline"
                     >
                       {facility.phoneDisplay}
                     </a>
@@ -249,14 +290,14 @@ export default function Home() {
                     href={mapsDirectionsHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-lg border-2 border-navy px-6 py-3 text-base font-semibold text-navy transition hover:bg-navy hover:text-white"
+                    className="inline-flex items-center justify-center rounded-md border-2 border-ink px-6 py-3 font-display text-base font-bold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-white"
                   >
                     Get Directions
                   </a>
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+              <div className="overflow-hidden rounded-lg border border-stone-200 shadow-sm">
                 <iframe
                   title={`Google Maps location of ${facility.name} at ${fullAddress}`}
                   src={mapsEmbedSrc}
@@ -271,11 +312,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. REVIEWS (placeholder until GBP reviews exist) */}
-        <section className="bg-slate-50 py-16 sm:py-20">
+        {/* REVIEWS (placeholder until GBP reviews exist) */}
+        <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-5 text-center">
-            <h2 className="text-2xl font-bold sm:text-3xl">Customer Reviews</h2>
-            <p className="mt-4 text-slate-600">
+            <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
+              Customer Reviews
+            </h2>
+            <p className="mt-4 text-stone-600">
               No reviews yet. Be the first to share your experience and help
               other Idaho Falls neighbors find storage.
             </p>
@@ -283,29 +326,26 @@ export default function Home() {
               href={facility.reviewUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-6 inline-flex items-center justify-center rounded-lg border-2 border-navy px-6 py-3 text-base font-semibold text-navy transition hover:bg-navy hover:text-white"
+              className="mt-6 inline-flex items-center justify-center rounded-md border-2 border-ink px-6 py-3 font-display text-base font-bold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-white"
             >
               Leave a Review on Google
             </a>
           </div>
         </section>
 
-        {/* 7. FAQ (visible content backing the FAQ schema) */}
-        <section className="py-16 sm:py-20">
+        {/* FAQ */}
+        <section className="bg-white py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-5">
-            <h2 className="text-center text-2xl font-bold sm:text-3xl">
+            <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
               Frequently Asked Questions
             </h2>
-            <dl className="mt-10 space-y-4">
+            <dl className="mt-8 divide-y divide-stone-200 border-y border-stone-200">
               {faqs.map((faq) => (
-                <div
-                  key={faq.question}
-                  className="rounded-xl border border-slate-200 bg-white p-5"
-                >
-                  <dt className="text-lg font-semibold text-navy">
+                <div key={faq.question} className="py-5">
+                  <dt className="font-display text-lg font-bold text-ink">
                     {faq.question}
                   </dt>
-                  <dd className="mt-2 text-slate-600">{faq.answer}</dd>
+                  <dd className="mt-2 text-stone-600">{faq.answer}</dd>
                 </div>
               ))}
             </dl>
@@ -314,11 +354,14 @@ export default function Home() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-navy-dark text-blue-100">
+      <footer className="bg-ink text-blue-100">
+        <div className="signage-stripe h-2 w-full" aria-hidden="true" />
         <div className="mx-auto max-w-6xl px-5 py-10">
           <div className="flex flex-col items-start justify-between gap-6 sm:flex-row">
             <div>
-              <p className="text-lg font-bold text-white">{facility.name}</p>
+              <p className="font-display text-lg font-extrabold uppercase tracking-wide text-white">
+                {facility.name}
+              </p>
               <address className="mt-2 not-italic text-sm">
                 {facility.address.street}
                 <br />
@@ -327,14 +370,12 @@ export default function Home() {
               </address>
             </div>
             <div className="text-sm sm:text-right">
-              <p>
-                <a
-                  href={facility.phoneHref}
-                  className="text-lg font-semibold text-white underline"
-                >
-                  {facility.phoneDisplay}
-                </a>
-              </p>
+              <a
+                href={facility.phoneHref}
+                className="font-display text-lg font-bold text-white underline"
+              >
+                {facility.phoneDisplay}
+              </a>
               <p className="mt-2">Access: {facility.access.label}</p>
               <p>Office: {facility.office}</p>
             </div>

@@ -18,7 +18,8 @@ export default function OgImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0b2545 0%, #13315c 100%)",
+          background: "#0a1f33",
+          borderTop: "16px solid #e2562a",
           color: "white",
           fontFamily: "sans-serif",
         }}
@@ -29,7 +30,7 @@ export default function OgImage() {
             fontSize: 30,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#fcd34d",
+            color: "#e2562a",
           }}
         >
           {facility.name}
@@ -54,7 +55,7 @@ export default function OgImage() {
             fontSize: 44,
             fontWeight: 700,
             marginTop: 36,
-            color: "#fcd34d",
+            color: "#e2562a",
           }}
         >
           {facility.phoneDisplay}
