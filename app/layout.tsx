@@ -21,9 +21,9 @@ const display = Barlow_Semi_Condensed({
 export const metadata: Metadata = {
   metadataBase: new URL(facility.url),
   title:
-    "Storage Units Idaho Falls | Affordable Self Storage | (208) 313-2257",
+    "Storage Units Idaho Falls | Affordable Self Storage | (208) 360-6741",
   description:
-    "Affordable self storage in Idaho Falls, ID 83401. Drive-up units with roll up doors and 24/7 access, starting at $65/mo. Call (208) 313-2257 to reserve.",
+    "Affordable self storage in Idaho Falls, ID 83401. Drive-up units with roll up doors and 24/7 access, starting at $65/mo. Call (208) 360-6741 to reserve.",
   alternates: {
     canonical: "/",
   },
@@ -40,16 +40,16 @@ export const metadata: Metadata = {
     url: facility.url,
     siteName: facility.name,
     title:
-      "Storage Units Idaho Falls | Affordable Self Storage | (208) 313-2257",
+      "Storage Units Idaho Falls | Affordable Self Storage | (208) 360-6741",
     description:
-      "Drive-up self storage in Idaho Falls, ID. Roll up doors, 24/7 access, units from $65/mo. Call (208) 313-2257.",
+      "Drive-up self storage in Idaho Falls, ID. Roll up doors, 24/7 access, units from $65/mo. Call (208) 360-6741.",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
     title: "Storage Units Idaho Falls | Affordable Self Storage",
     description:
-      "Drive-up self storage in Idaho Falls, ID. Roll up doors, 24/7 access, units from $65/mo. Call (208) 313-2257.",
+      "Drive-up self storage in Idaho Falls, ID. Roll up doors, 24/7 access, units from $65/mo. Call (208) 360-6741.",
   },
   robots: {
     index: true,

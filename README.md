@@ -2,7 +2,7 @@
 
 Single-page marketing site for **Storage Units Idaho Falls**, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. Designed for deployment on Vercel.
 
-The site is built around one conversion goal: **a phone call**. Every call to action dials `(208) 313-2257`. There is no database, API, or form.
+The site is built around one conversion goal: **a phone call**. Every call to action dials `(208) 360-6741`. There is no database, API, or form.
 
 ## Editing facility data
 

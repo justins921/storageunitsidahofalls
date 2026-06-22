@@ -21,11 +21,11 @@ export const facility = {
   url: "https://storageunitsidahofalls.com",
 
   /** Phone shown to humans. */
-  phoneDisplay: "(208) 313-2257",
+  phoneDisplay: "(208) 360-6741",
   /** Phone in tel: link format (E.164). */
-  phoneHref: "tel:+12083132257",
+  phoneHref: "tel:+12083606741",
   /** Phone in E.164 for schema. */
-  phoneE164: "+1-208-313-2257",
+  phoneE164: "+1-208-360-6741",
 
   address: {
     street: "1421 East Iona Road",
@@ -121,7 +121,7 @@ export const faqs: { question: string; answer: string }[] = [
     question: "Where can I find storage units in Idaho Falls?",
     answer:
       "Storage Units Idaho Falls is located at 1421 East Iona Road, Idaho Falls, ID 83401. " +
-      "You can reserve a unit by calling (208) 313-2257. The gate is open every day from " +
+      "You can reserve a unit by calling (208) 360-6741. The gate is open every day from " +
       "12:00 AM to 11:59 PM, so you can reach your unit whenever you need to.",
   },
   {
@@ -136,7 +136,7 @@ export const faqs: { question: string; answer: string }[] = [
     answer:
       "A 10x14 unit (140 sq ft) holds the contents of a one-bedroom apartment or a few rooms of " +
       "furniture. An 11x14 unit (154 sq ft) suits a two-bedroom home. An 11x30 unit (330 sq ft) " +
-      "fits the contents of a larger home, a vehicle, or business inventory. Call (208) 313-2257 " +
+      "fits the contents of a larger home, a vehicle, or business inventory. Call (208) 360-6741 " +
       "if you would like help choosing.",
   },
   {
