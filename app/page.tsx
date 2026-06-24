@@ -70,17 +70,16 @@ export default function Home() {
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-center">
             <div>
               <p className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">
-                Idaho Falls, ID 83401
+                {facility.address.city}, {facility.address.region}{" "}
+                {facility.address.postalCode}
               </p>
               <h1 className="mt-3 font-display text-4xl font-extrabold uppercase leading-[0.95] sm:text-6xl">
                 Storage Units in
                 <br />
-                Idaho Falls, ID
+                {facility.address.city}, {facility.address.region}
               </h1>
               <p className="mt-5 max-w-xl text-lg text-blue-100/90">
-                Clean, drive-up units with roll up doors and round-the-clock gate
-                access, starting at ${facility.startingPrice} a month. Spaces are
-                going fast. Call to lock one in before it is gone.
+                {facility.messaging.heroSubhead}
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <CallButton label={`Call to Reserve: ${facility.phoneDisplay}`} />
@@ -137,8 +136,7 @@ export default function Home() {
               <span className="mb-1 hidden h-px flex-1 bg-ink/15 sm:block" />
             </div>
             <p className="mt-3 max-w-2xl text-stone-600">
-              Every unit is drive-up with a roll up door and outdoor access.
-              Reserve by phone, no online form required.
+              {facility.messaging.unitsIntro}
             </p>
 
             <div className="mt-8 space-y-4">
@@ -259,8 +257,7 @@ export default function Home() {
                   Find Us in Idaho Falls
                 </h2>
                 <p className="mt-4 text-stone-600">
-                  We are on East Iona Road, easy to reach from anywhere in Idaho
-                  Falls and the surrounding area.
+                  {facility.messaging.locationIntro}
                 </p>
                 <div className="mt-6 flex items-start gap-3">
                   <span className="mt-1 text-accent">

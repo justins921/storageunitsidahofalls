@@ -66,6 +66,20 @@ export const facility = {
 
   /** priceRange string for LocalBusiness schema. */
   priceRange: "$65–$145",
+
+  /**
+   * Location-specific marketing copy. Kept here (not hardcoded in the page) so
+   * each city site can vary its wording without touching the layout. Edit these
+   * to make a new location read as its own page rather than a clone.
+   */
+  messaging: {
+    heroSubhead:
+      "Clean, drive-up units with roll up doors and round-the-clock gate access, starting at $65 a month. Spaces are going fast. Call to lock one in before it is gone.",
+    unitsIntro:
+      "Every unit is drive-up with a roll up door and outdoor access. Reserve by phone, no online form required.",
+    locationIntro:
+      "We are on East Iona Road, easy to reach from anywhere in Idaho Falls and the surrounding area.",
+  },
 } as const;
 
 export type Unit = {
