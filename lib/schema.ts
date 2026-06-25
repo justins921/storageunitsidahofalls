@@ -13,18 +13,30 @@ import { facility, units, faqs } from "./facility";
  * matches the visible content on the page.
  */
 export function buildJsonLd() {
+  const { city, region } = facility.address;
+  const hasMap = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${facility.name}, ${facility.address.street}, ${city}, ${region} ${facility.address.postalCode}`
+  )}`;
+
   const localBusiness = {
     "@type": "SelfStorage",
     "@id": `${facility.url}/#facility`,
     name: facility.name,
     description:
-      "Affordable self storage in Idaho Falls, ID. Drive-up storage units with " +
-      "roll up doors and 24/7 gate access, starting at $65 per month.",
+      `Affordable self storage in ${city}, ${region}. Drive-up storage units with ` +
+      `roll up doors and 24/7 gate access, starting at $${facility.startingPrice} per month.`,
     url: facility.url,
     telephone: facility.phoneE164,
     image: `${facility.url}/opengraph-image`,
     priceRange: facility.priceRange,
     currenciesAccepted: "USD",
+    paymentAccepted: "Cash, Credit Card, Debit Card",
+    ...(facility.sameAs.length ? { sameAs: facility.sameAs } : {}),
+    hasMap,
+    areaServed: facility.areasServed.map((name) => ({
+      "@type": "City",
+      name,
+    })),
     address: {
       "@type": "PostalAddress",
       streetAddress: facility.address.street,

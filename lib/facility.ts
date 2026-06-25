@@ -61,6 +61,20 @@ export const facility = {
    */
   reviewUrl: "https://search.google.com/local/writereview?placeid=PLACEHOLDER",
 
+  /**
+   * Public profile URLs for schema `sameAs` (entity verification / GBP
+   * alignment). Add the live Google Business Profile listing URL and the
+   * Facebook page once they exist. Leave empty until then — never emit
+   * placeholder URLs into schema.
+   */
+  sameAs: [] as string[],
+
+  /**
+   * Nearby towns this location serves. Used for the "Areas We Serve" section
+   * and the schema `areaServed` property to reinforce local relevance.
+   */
+  areasServed: ["Idaho Falls", "Ammon", "Iona", "Ucon", "Shelley"],
+
   /** Lowest monthly price across all units, used in metadata and copy. */
   startingPrice: 65,
 

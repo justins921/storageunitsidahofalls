@@ -4,6 +4,7 @@ import "./globals.css";
 import { facility } from "@/lib/facility";
 import { seo } from "@/lib/seo";
 import { buildJsonLd } from "@/lib/schema";
+import Analytics from "@/components/Analytics";
 
 const body = Barlow({
   subsets: ["latin"],
@@ -44,6 +45,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: process.env.GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+    : undefined,
 };
 
 export default function RootLayout({
@@ -63,6 +67,7 @@ export default function RootLayout({
       </head>
       <body className="bg-paper font-sans text-ink antialiased">
         {children}
+        <Analytics />
       </body>
     </html>
   );

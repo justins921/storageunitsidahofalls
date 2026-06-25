@@ -39,6 +39,18 @@ When the listing goes live, update these placeholders in `lib/facility.ts`:
 - One unambiguous action everywhere: call to reserve.
 - Trust signals (hours, location, reviews placeholder) and objection-handling FAQ.
 
+## Marketing, analytics & ads
+
+See **[MARKETING.md](MARKETING.md)** for the full growth playbook: Google
+Business Profile, Search Console, Google Ads (with phone-call conversion
+tracking), Meta Pixel/Ads, and reviews.
+
+Analytics and ad tracking are wired up but **inert until you set the matching
+environment variables** (copy `.env.example` to `.env.local` for local dev, and
+set them in Vercel for production). With none set, no tracking scripts load.
+Every `tel:` click automatically fires a GA4 event, a Google Ads conversion, and
+a Meta "Contact" event once the IDs are in place.
+
 ## Local development
 
 ```bash

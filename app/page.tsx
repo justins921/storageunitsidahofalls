@@ -309,6 +309,29 @@ export default function Home() {
           </div>
         </section>
 
+        {/* AREAS WE SERVE — local relevance for SEO and ad landing pages */}
+        <section className="py-16 sm:py-20">
+          <div className="mx-auto max-w-4xl px-5 text-center">
+            <h2 className="font-display text-3xl font-extrabold uppercase sm:text-4xl">
+              Areas We Serve
+            </h2>
+            <p className="mt-4 text-stone-600">
+              {facility.name} serves {facility.address.city} and the surrounding
+              communities across eastern Idaho.
+            </p>
+            <ul className="mt-8 flex flex-wrap justify-center gap-3">
+              {facility.areasServed.map((area) => (
+                <li
+                  key={area}
+                  className="rounded-full border border-ink/15 bg-white px-4 py-2 font-display text-sm font-bold uppercase tracking-wide text-ink-700"
+                >
+                  {area}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* REVIEWS (placeholder until GBP reviews exist) */}
         <section className="py-16 sm:py-20">
           <div className="mx-auto max-w-3xl px-5 text-center">
