@@ -4,9 +4,29 @@ Single-page marketing site for **Storage Units Idaho Falls**, built with Next.js
 
 The site is built around one conversion goal: **a phone call**. Every call to action dials `(208) 360-6741`. There is no database, API, or form.
 
+## Multi-site architecture (one repo, many cities)
+
+This single codebase powers a separate site per city. Each city's content lives
+in its own module under **`lib/sites/`** (e.g. `idaho-falls.ts`, `rexburg.ts`),
+and **`lib/facility.ts`** selects the active one at build time from the
+`NEXT_PUBLIC_SITE` environment variable:
+
+| `NEXT_PUBLIC_SITE` | Site served |
+| --- | --- |
+| unset or `idaho-falls` | Storage Units Idaho Falls (default) |
+| `rexburg` | Storage Units Rexburg |
+
+Deploy each city as its own Vercel project pointed at this repo, set
+`NEXT_PUBLIC_SITE` on each, and attach that city's domain. Because everything
+reads from `lib/facility.ts`, all copy, schema, metadata, sitemap, canonical
+URL, and `robots.txt` adapt automatically.
+
+**To add a city:** copy a file in `lib/sites/`, change the values, and register
+it in the `sites` map in `lib/facility.ts`.
+
 ## Editing facility data
 
-All facility content lives in **`lib/facility.ts`**: name, address, phone, hours, the available units (size, price, features, availability), the FAQ, the Google review URL, and the canonical site URL. Change a value there once and it updates the page copy, the JSON-LD schema, the metadata, the sitemap, and `robots.txt`.
+Each city's content lives in **`lib/sites/<city>.ts`**: name, address, phone, hours, the available units (size, price, features, availability), the FAQ, the Google review URL, and the canonical site URL. Change a value there once and it updates the page copy, the JSON-LD schema, the metadata, the sitemap, and `robots.txt`.
 
 > **Local SEO note:** the name, address, phone, and hours in `lib/facility.ts` must match the Google Business Profile listing exactly. Consistent NAP data is critical for local ranking.
 
