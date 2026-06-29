@@ -11,28 +11,39 @@ import { useEffect } from "react";
  * With no IDs set, this renders nothing and adds zero network requests.
  *
  * Because every conversion on this site is a phone call, a single document
- * click listener watches for clicks on any `tel:` link and fires:
+ * click listener watches for clicks on any `tel:` link and fires a call event
+ * into every analytics tool that's configured:
  *  - a GA4 event (phone_call_click)
  *  - a Google Ads conversion (if a call conversion label is set)
  *  - a Meta Pixel "Contact" event
+ *  - a Microsoft Clarity custom event (free; also records the session)
+ *  - a Plausible custom goal ("Phone Call Click")
+ *
+ * NOTE: this tracks the call *click*, not a completed call or a booking.
  *
  * Env vars (all optional, all NEXT_PUBLIC_ so they reach the browser):
  *  - NEXT_PUBLIC_GA_MEASUREMENT_ID         e.g. G-XXXXXXXXXX  (GA4)
  *  - NEXT_PUBLIC_GOOGLE_ADS_ID             e.g. AW-XXXXXXXXX  (Google Ads)
  *  - NEXT_PUBLIC_GOOGLE_ADS_CALL_CONVERSION e.g. AW-XXXXXXXXX/AbCdEf123  (send_to)
  *  - NEXT_PUBLIC_META_PIXEL_ID             e.g. 1234567890     (Meta Pixel)
+ *  - NEXT_PUBLIC_CLARITY_ID                e.g. abcdef1234      (Microsoft Clarity, free)
+ *  - NEXT_PUBLIC_PLAUSIBLE_DOMAIN          e.g. storageunitsrexburg.com (Plausible)
  */
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 const ADS_CALL_CONVERSION = process.env.NEXT_PUBLIC_GOOGLE_ADS_CALL_CONVERSION;
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+const PLAUSIBLE_DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     fbq?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
+    clarity?: (...args: unknown[]) => void;
+    plausible?: (...args: unknown[]) => void;
   }
 }
 
@@ -53,6 +64,8 @@ export default function Analytics() {
         });
       }
       window.fbq?.("track", "Contact");
+      window.clarity?.("event", "phone_call_click");
+      window.plausible?.("Phone Call Click");
     }
 
     document.addEventListener("click", handleClick);
@@ -107,6 +120,32 @@ export default function Analytics() {
               alt=""
             />
           </noscript>
+        </>
+      )}
+
+      {CLARITY_ID && (
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "${CLARITY_ID}");
+          `}
+        </Script>
+      )}
+
+      {PLAUSIBLE_DOMAIN && (
+        <>
+          <Script id="plausible-init" strategy="afterInteractive">
+            {`window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
+          </Script>
+          <Script
+            defer
+            data-domain={PLAUSIBLE_DOMAIN}
+            src="https://plausible.io/js/script.js"
+            strategy="afterInteractive"
+          />
         </>
       )}
     </>
