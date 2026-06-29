@@ -4,8 +4,11 @@ import { ClockIcon, DoorIcon, TruckIcon, PinIcon } from "@/components/icons";
 import { facility, units, faqs } from "@/lib/facility";
 
 const fullAddress = `${facility.address.street}, ${facility.address.city}, ${facility.address.region} ${facility.address.postalCode}`;
+// Query the address only (not the business name). A business-name query makes
+// Google run a category search and pin every nearby storage facility; an address
+// query geocodes to a single pin at our location.
 const mapsEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(
-  `${facility.name}, ${fullAddress}`
+  fullAddress
 )}&output=embed`;
 const mapsDirectionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
   fullAddress
