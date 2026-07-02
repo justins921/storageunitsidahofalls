@@ -23,7 +23,7 @@ const mapsDirectionsHref = `https://www.google.com/maps/dir/?api=1&destination=$
  */
 function LlmContext() {
   return (
-    <div id="llm-context" className="sr-only-llm">
+    <div id="llm-context" className="sr-only-llm" aria-hidden="true">
       <p>
         {facility.name} is an affordable self storage facility located at{" "}
         {fullAddress}. You can reserve a unit by phone at {facility.phoneDisplay}.
@@ -63,6 +63,12 @@ const features = [
 export default function Home() {
   return (
     <>
+      <a
+        href="#top"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:text-ink focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <LlmContext />
       <SiteHeader />
 
@@ -72,7 +78,7 @@ export default function Home() {
           <div className="signage-stripe h-2 w-full" aria-hidden="true" />
           <div className="mx-auto grid max-w-6xl gap-12 px-5 py-14 sm:py-20 lg:grid-cols-[1.3fr_1fr] lg:items-center">
             <div>
-              <p className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent">
+              <p className="font-display text-sm font-bold uppercase tracking-[0.2em] text-accent-light">
                 {facility.address.city}, {facility.address.region}{" "}
                 {facility.address.postalCode}
               </p>
@@ -116,7 +122,7 @@ export default function Home() {
                         · {unit.sqft} sq ft
                       </span>
                     </span>
-                    <span className="font-display font-bold text-accent">
+                    <span className="font-display font-bold text-accent-light">
                       ${unit.price}/mo
                     </span>
                   </li>
@@ -191,7 +197,7 @@ export default function Home() {
                     <div className="flex items-center justify-between gap-4 border-t border-stone-100 pt-4 md:flex-col md:items-end md:border-0 md:pt-0">
                       <p className="font-display text-3xl font-extrabold text-ink">
                         ${unit.price}
-                        <span className="text-base font-bold text-stone-400">
+                        <span className="text-base font-bold text-stone-500">
                           /mo
                         </span>
                       </p>
@@ -293,6 +299,7 @@ export default function Home() {
                     className="inline-flex items-center justify-center rounded-md border-2 border-ink px-6 py-3 font-display text-base font-bold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-white"
                   >
                     Get Directions
+                    <span className="sr-only"> (opens in a new tab)</span>
                   </a>
                 </div>
               </div>
@@ -352,6 +359,7 @@ export default function Home() {
               className="mt-6 inline-flex items-center justify-center rounded-md border-2 border-ink px-6 py-3 font-display text-base font-bold uppercase tracking-wide text-ink transition hover:bg-ink hover:text-white"
             >
               Leave a Review on Google
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </section>

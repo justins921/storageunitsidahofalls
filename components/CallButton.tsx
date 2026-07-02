@@ -49,7 +49,7 @@ export default function CallButton({
 
   const variants: Record<NonNullable<Props["variant"]>, string> = {
     primary:
-      "bg-accent text-white hover:bg-accent-dark shadow-md shadow-accent/20",
+      "bg-accent-dark text-white hover:bg-[#8f2d12] shadow-md shadow-accent/20",
     "outline-light": "border-2 border-white/70 text-white hover:bg-white/10",
     "outline-dark": "border-2 border-ink text-ink hover:bg-ink hover:text-white",
   };
@@ -58,7 +58,6 @@ export default function CallButton({
     <a
       href={facility.phoneHref}
       className={`${base} ${sizing} ${variants[variant]} ${className}`}
-      aria-label={`Call Storage Units Idaho Falls at ${facility.phoneDisplay}`}
     >
       <PhoneIcon className={size === "sm" ? "h-4 w-4" : "h-5 w-5"} />
       <span>{label ?? `Call ${facility.phoneDisplay}`}</span>

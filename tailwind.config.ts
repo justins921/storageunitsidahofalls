@@ -16,8 +16,13 @@ const config: Config = {
         },
         paper: "#f4f1ea",
         accent: {
+          // Orange text on the dark navy background (meets AA 4.5:1 on #0a1f33).
+          light: "#ff7a4d",
+          // Brand orange: icons, borders, the signage stripe, and large display text.
           DEFAULT: "#e2562a",
-          dark: "#c5461f",
+          // Button fills (white text) and small orange text on light backgrounds
+          // — darkened so both clear WCAG AA 4.5:1.
+          dark: "#b8431b",
         },
       },
       fontFamily: {
