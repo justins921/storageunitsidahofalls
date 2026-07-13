@@ -84,6 +84,11 @@ export default function PrivacyPolicy() {
                 We use Google Analytics to understand how visitors use our
                 website, so we can improve it and measure our marketing. Google
                 Analytics sets cookies and processes usage data on our behalf. We
+                also use Microsoft Clarity, which records anonymized session
+                activity such as mouse movement, clicks, and scrolling, and
+                produces aggregate heatmaps, to help us understand how the site
+                is used. Clarity masks text entered on a page, and our site has
+                no forms, so it does not capture personal details you type. We
                 may also use advertising tools from Google (Google Ads) and Meta
                 (Facebook and Instagram) to measure the performance of ads and to
                 reach people who have visited our site; these tools may set their
@@ -128,8 +133,8 @@ export default function PrivacyPolicy() {
               <p className="mt-3">
                 We do not sell your personal information. We share limited
                 information with service providers that operate on our behalf,
-                including Google (analytics and advertising), Meta (advertising),
-                and our website host, Vercel. These providers process the
+                including Google (analytics and advertising), Microsoft (Clarity
+                analytics), Meta (advertising), and our website host, Vercel. These providers process the
                 information only to provide their services to us. We may also
                 disclose information if required by law.
               </p>
