@@ -29,7 +29,7 @@ export const facility = {
   phoneE164: "+1-208-360-6741",
 
   address: {
-    street: "1421 East Iona Road",
+    street: "1421 E Iona Rd",
     city: "Idaho Falls",
     region: "ID",
     regionName: "Idaho",
@@ -38,7 +38,7 @@ export const facility = {
   },
 
   /**
-   * Approximate geo coordinates for 1421 East Iona Road, Idaho Falls, ID 83401.
+   * Approximate geo coordinates for 1421 E Iona Rd, Idaho Falls, ID 83401.
    * Replace with the exact pin from the Google Business Profile when available.
    */
   geo: {
@@ -93,7 +93,7 @@ export const facility = {
     unitsIntro:
       "Every unit is drive-up with a roll up door and outdoor access. Reserve by phone, no online form required.",
     locationIntro:
-      "We are on East Iona Road, easy to reach from anywhere in Idaho Falls and the surrounding area.",
+      "We are on E Iona Rd, easy to reach from anywhere in Idaho Falls and the surrounding area.",
   },
 } as const;
 
@@ -132,7 +132,7 @@ export const faqs: Faq[] = [
   {
     question: "Where can I find storage units in Idaho Falls?",
     answer:
-      "Storage Units Idaho Falls is located at 1421 East Iona Road, Idaho Falls, ID 83401. " +
+      "Storage Units Idaho Falls is located at 1421 E Iona Rd, Idaho Falls, ID 83401. " +
       "You can reserve a unit by calling (208) 360-6741. The gate is open every day from " +
       "12:00 AM to 11:59 PM, so you can reach your unit whenever you need to.",
   },

@@ -1,8 +1,7 @@
 import { ImageResponse } from "next/og";
 import { facility } from "@/lib/facility";
 
-export const alt =
-  "Storage Units Idaho Falls — affordable self storage at 1421 East Iona Road";
+export const alt = `${facility.name} — affordable drive-up self storage in ${facility.address.city}, ${facility.address.region}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -44,7 +43,7 @@ export default function OgImage() {
             lineHeight: 1.05,
           }}
         >
-          Storage Units in Idaho Falls, ID
+          {`Storage Units in ${facility.address.city}, ${facility.address.region}`}
         </div>
         <div style={{ display: "flex", fontSize: 38, marginTop: 28, color: "#dbeafe" }}>
           {`Roll up doors · 24/7 access · from $${facility.startingPrice}/mo`}
