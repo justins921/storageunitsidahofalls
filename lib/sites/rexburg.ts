@@ -117,7 +117,7 @@ export const units: Unit[] = [
     sqft: 100,
     price: 45,
     features: ["9x9 Garage Door", "Drive-Up Access"],
-    availability: "4 Available",
+    availability: "Only 4 Available",
     unitsLeft: 4,
   },
   {
@@ -126,8 +126,8 @@ export const units: Unit[] = [
     sqft: 140,
     price: 69,
     features: ["9x9 Garage Door", "Drive-Up Access"],
-    availability: "Now Available",
-    unitsLeft: 10,
+    availability: "Limited Availability",
+    unitsLeft: 20,
   },
   {
     id: "10x20",
@@ -135,8 +135,8 @@ export const units: Unit[] = [
     sqft: 200,
     price: 89,
     features: ["9x9 Garage Door", "Drive-Up Access"],
-    availability: "Now Available",
-    unitsLeft: 10,
+    availability: "Limited Availability",
+    unitsLeft: 65,
   },
 ];
 
