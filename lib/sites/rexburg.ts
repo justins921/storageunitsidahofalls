@@ -77,10 +77,21 @@ export const facility = {
   areasServed: ["Rexburg", "Sugar City", "Rigby", "Teton", "Newdale"],
 
   /** Lowest monthly price across all units, used in metadata and copy. */
-  startingPrice: 35,
+  startingPrice: 45,
 
   /** priceRange string for LocalBusiness schema. */
-  priceRange: "$35–$60",
+  priceRange: "$45–$89",
+
+  /**
+   * Limited-time move-in promotion. Rendered in the hero and on the unit cards
+   * when set; sites with no active promo set this to null.
+   */
+  promo: {
+    badge: "$5 First Month",
+    headline: "Move In for Just $5",
+    detail:
+      "Get your first month for $5 on any size, then the regular monthly rate. Limited-time move-in special while units last — call to claim yours.",
+  },
 
   /**
    * Location-specific marketing copy. Kept here (not hardcoded in the page) so
@@ -89,68 +100,43 @@ export const facility = {
    */
   messaging: {
     heroSubhead:
-      "Drive-up storage on Highway 191 just south of Rexburg, with roll up doors and 24/7 gate access from $35 a month. A range of sizes are open right now. Call to claim one before they fill up.",
+      "Drive-up storage on Highway 191 just south of Rexburg, with wide 9x9 garage doors and 24/7 gate access, from $45 a month. Move in for just $5 your first month. Call to claim a unit before they are gone.",
     unitsIntro:
-      "Pick a size, pull right up to the door, and unload. Every space has a roll up door and outdoor drive-up access. Reserve in one phone call, with no online forms.",
+      "Three drive-up sizes, each with a wide 9x9 garage door you can pull right up to and load in minutes. Reserve in one phone call, with no online forms.",
     locationIntro:
       "You will find us on South Highway 191, a short drive from downtown Rexburg, Sugar City, and the BYU-Idaho campus.",
   },
 } as const;
 
+// NOTE: availability/unitsLeft are placeholders ("Now Available") pending the
+// unit quantities. Set real counts and low-stock urgency once they arrive.
 export const units: Unit[] = [
   {
-    id: "9x7",
-    size: "9x7",
-    sqft: 63,
-    price: 35,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "Only 1 left",
-    unitsLeft: 1,
-  },
-  {
-    id: "9x9",
-    size: "9x9",
-    sqft: 81,
-    price: 40,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "Only 2 left",
-    unitsLeft: 2,
-  },
-  {
-    id: "10x9",
-    size: "10x9",
-    sqft: 90,
+    id: "10x10",
+    size: "10x10",
+    sqft: 100,
     price: 45,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "Only 1 left",
-    unitsLeft: 1,
+    features: ["9x9 Garage Door", "Drive-Up Access"],
+    availability: "Now Available",
+    unitsLeft: 10,
   },
   {
-    id: "9x13",
-    size: "9x13",
-    sqft: 117,
-    price: 50,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "12 Available",
-    unitsLeft: 12,
+    id: "10x14",
+    size: "10x14",
+    sqft: 140,
+    price: 69,
+    features: ["9x9 Garage Door", "Drive-Up Access"],
+    availability: "Now Available",
+    unitsLeft: 10,
   },
   {
-    id: "9x14",
-    size: "9x14",
-    sqft: 126,
-    price: 55,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "Only 1 left",
-    unitsLeft: 1,
-  },
-  {
-    id: "9x20",
-    size: "9x20",
-    sqft: 180,
-    price: 60,
-    features: ["Roll Up Door", "Outdoor Access"],
-    availability: "27 Available",
-    unitsLeft: 27,
+    id: "10x20",
+    size: "10x20",
+    sqft: 200,
+    price: 89,
+    features: ["9x9 Garage Door", "Drive-Up Access"],
+    availability: "Now Available",
+    unitsLeft: 10,
   },
 ];
 
@@ -166,18 +152,18 @@ export const faqs: Faq[] = [
   {
     question: "How much does storage cost in Rexburg?",
     answer:
-      "Storage at Storage Units Rexburg starts at $35 per month for a 9x7 unit (63 sq ft). " +
-      "A 9x9 (81 sq ft) is $40, a 10x9 (90 sq ft) is $45, a 9x13 (117 sq ft) is $50, a 9x14 " +
-      "(126 sq ft) is $55, and a 9x20 (180 sq ft) is $60 per month. Every unit has a roll up " +
-      "door and outdoor drive-up access.",
+      "Storage Units Rexburg has three drive-up sizes: a 10x10 unit (100 sq ft) for $45 per " +
+      "month, a 10x14 unit (140 sq ft) for $69 per month, and a 10x20 unit (200 sq ft) for $89 " +
+      "per month. Every unit has a wide 9x9 garage door and outdoor drive-up access. For a " +
+      "limited time, your first month is just $5.",
   },
   {
     question: "What size storage unit do I need?",
     answer:
-      "A 9x7 (63 sq ft) or 9x9 (81 sq ft) unit holds a dorm move-out or a few rooms of furniture. " +
-      "A 9x13 (117 sq ft) or 9x14 (126 sq ft) unit suits a one to two-bedroom home. A 9x20 unit " +
-      "(180 sq ft) fits the contents of a larger home, a vehicle, or business inventory. Call " +
-      "(208) 360-6741 if you would like help choosing.",
+      "A 10x10 unit (100 sq ft) holds a dorm move-out or a couple of rooms of furniture. A 10x14 " +
+      "unit (140 sq ft) suits a one to two-bedroom home. A 10x20 unit (200 sq ft) fits a larger " +
+      "home, a vehicle, or business inventory. Every unit has a wide 9x9 garage door for easy " +
+      "drive-up access. Call (208) 360-6741 if you would like help choosing.",
   },
   {
     question: "Can I access my storage unit anytime?",

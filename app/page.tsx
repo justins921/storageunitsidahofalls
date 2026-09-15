@@ -95,6 +95,16 @@ export default function Home() {
               <p className="mt-5 max-w-xl text-lg text-blue-100/90">
                 {facility.messaging.heroSubhead}
               </p>
+              {facility.promo && (
+                <div className="mt-6 max-w-xl rounded-lg bg-accent-dark px-5 py-4 shadow-lg">
+                  <p className="font-display text-2xl font-extrabold uppercase leading-tight text-white sm:text-3xl">
+                    {facility.promo.headline}
+                  </p>
+                  <p className="mt-1 text-sm text-white">
+                    {facility.promo.detail}
+                  </p>
+                </div>
+              )}
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
                 <CallButton label={`Call to Reserve: ${facility.phoneDisplay}`} />
                 <a
@@ -182,6 +192,11 @@ export default function Home() {
                             {feature}
                           </span>
                         ))}
+                        {facility.promo && (
+                          <span className="rounded-full bg-accent-dark px-3 py-1 text-xs font-bold uppercase text-white">
+                            {facility.promo.badge}
+                          </span>
+                        )}
                       </div>
                       <p
                         className={`mt-3 inline-flex items-center gap-1.5 text-sm font-bold ${

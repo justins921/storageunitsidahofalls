@@ -82,6 +82,9 @@ export const facility = {
   /** priceRange string for LocalBusiness schema. */
   priceRange: "$65–$145",
 
+  /** No active move-in promotion. */
+  promo: null,
+
   /**
    * Location-specific marketing copy. Kept here (not hardcoded in the page) so
    * each city site can vary its wording without touching the layout. Edit these
