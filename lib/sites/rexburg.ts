@@ -117,8 +117,8 @@ export const units: Unit[] = [
     sqft: 100,
     price: 45,
     features: ["9x9 Garage Door", "Drive-Up Access"],
-    availability: "Now Available",
-    unitsLeft: 10,
+    availability: "4 Available",
+    unitsLeft: 4,
   },
   {
     id: "10x14",
